@@ -1,0 +1,390 @@
+global !p
+def x(snip):
+    if snip.ft.startswith("x"):
+        snip.rv = ' /'
+    else:
+        snip.rv = ""
+endglobal
+
+snippet opt "Option"
+<option${1: value="${2:option}"}>${3:$2}</option>
+endsnippet
+
+snippet select "Select Box"
+<select name="${1:some_name}" id="${2:$1}"${3:${4: multiple}${5: onchange="${6:}"}${7: size="${8:1}"}}>
+	<option${9: value="${10:option1}"}>${11:$10}</option>
+	<option${12: value="${13:option2}"}>${14:$13}</option>${15:}
+	$0
+</select>
+endsnippet
+
+snippet btn "tag button" i
+<button$1>$2</button>$0
+endsnippet
+
+snippet iframe "iframe" i
+<iframe src="$1"${2: width="$3" height="$4"} scrolling="no" frameborder="no"></iframe>$0
+endsnippet
+
+snippet textarea "XHTML   <textarea>" i
+<textarea${1: name="${2:Name}"}${3: id="${4:ID}"}${5: rows="$6" cols="$7"}>$8</textarea>$0
+endsnippet
+
+snippet mailto "XHTML <a mailto: >" i
+<a href="mailto:${1:joe@example.com}">${2:email me}</a>
+endsnippet
+
+snippet base "XHTML <base>"
+<base${1: href="$2"} target="${3:_blank}" />
+endsnippet
+
+snippet body "XHTML <body>"
+<body>
+	$0
+</body>
+endsnippet
+
+snippet div "XHTML <div>" b
+<div>$1</div>$0
+endsnippet
+
+snippet divi "XHTML <div>" b
+<div id="${1:class_name}">
+	$0
+</div><!-- id="$1" end -->
+endsnippet
+
+snippet divc "XHTML <div>" b
+<div class="${1:id_name}">
+	$0
+</div><!-- class="$1" end -->
+endsnippet
+
+#snippet div "XHTML <div>" b
+#<div${1: class="${2:class_name}"}>
+#	$0
+#</div><!-- ${1/[\w_-]+\s*=\s*(['"])([^'"]+)\1/$2/g} -->
+#endsnippet
+
+snippet "\bt" "html tag" r
+<${1:div}>$2</${1/(\w+).*/$1/}>$0
+endsnippet
+
+snippet form "XHTML <form>"
+<form action="${1:`!p
+snip.rv = (snip.basename or 'unnamed') + '_submit'
+`}" method="${2:get}" accept-charset="utf-8">
+	$0
+
+	<p><input type="submit" value="Continue →"`!p x(snip)`></p>
+</form>
+endsnippet
+
+snippet head "XHTML <head>"
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>${1:ziggurat's document}</title>
+	$0
+</head>
+endsnippet
+
+snippet cs "XHTML <link>" !b
+<link rel="stylesheet" href="${1:/css/master.css}" />
+endsnippet
+
+snippet icon "XHTML <link>" !b
+<link rel="icon" href="$1" type='image/ico' />$0
+endsnippet
+
+snippet meta "XHTML <meta>"
+<meta name="${1:name}" content="${2:content}" />
+endsnippet
+
+snippet charset "XHTML <meta>" b
+<meta http-equiv="Content-Type" content="text/html; charset=${1:utf-8}" />$0
+endsnippet
+
+snippet jss "XHTML <script src...>" i
+<script src="$1" type="text/javascript" charset="${3:utf-8}"></script>
+endsnippet
+
+snippet js "XHTML <script>"
+<script type="text/javascript">
+	$0
+</script>
+endsnippet
+
+snippet iejs "XHTML for IE Test" !b
+<!-- saved from url=(0014)about:internet -->
+<!-- 给IE安全测试本地JS的标记 -->
+endsnippet
+
+snippet style "XHTML <style>"
+<style type="text/css" media="all">
+	$0
+</style>
+endsnippet
+
+snippet table "XHTML <table>"
+<table${1:${2: border="${3:0}"}${4: cellspacing="${5:5}"}${6: cellpadding="${7:5}"}}>
+	<thead>
+		<tr>
+			<th>$8</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>$9</td>
+		</tr>
+	</tbody>
+</table>
+endsnippet
+
+snippet "\ba" "Link" r
+<a href="#">$1</a>$0
+endsnippet
+
+snippet "\bat" "Link" r
+<a href="#" title="$1">${1}</a>$0
+endsnippet
+
+snippet "\bli" "list item" r
+<li>$1</li>$0
+endsnippet
+
+snippet "\bdt" "list item" r
+<dt>$1</dt>$0
+endsnippet
+
+snippet "\bdd" "list item" r
+<dd>$1</dd>$0
+endsnippet
+
+snippet la "list item" i
+<li><a href="#">$1</a></li>$0
+endsnippet
+
+snippet lat "list item" i
+<li><a href="#" title="$1">${1}</a></li>$0
+endsnippet
+
+snippet ul "unordered list"
+<ul>
+	$1
+</ul>$0
+endsnippet
+
+snippet ol "unordered list"
+<ol>
+	$1
+</ol>$0
+endsnippet
+
+snippet dl "unordered list"
+<dl>
+	$1
+</dl>$0
+endsnippet
+
+snippet "\bimg" "image tag" r
+<img src="$1" />$0
+endsnippet
+
+snippet ai "link image" b
+<a href="#"><img src="$1" /></a>$0
+endsnippet
+
+snippet lai "link image" b
+<li><a href="#"><img src="$1" /></a></li>$0
+endsnippet
+
+snippet td "table cell" i
+<td>$1</td>$0
+endsnippet
+
+snippet th "table cell" i
+<th>$1</th>$0
+endsnippet
+
+snippet tr "table row" i
+<tr>
+	$1
+</tr>$0
+endsnippet
+
+snippet h1 "XHTML <h1>" b
+<h1>$1</h1>$0
+endsnippet
+
+snippet h2 "XHTML <h2>" b
+<h2>$1</h2>$0
+endsnippet
+
+snippet h3 "XHTML <h3>" b
+<h3>$1</h3>$0
+endsnippet
+
+snippet h4 "XHTML <h4>" b
+<h4>$1</h4>$0
+endsnippet
+
+snippet h5 "XHTML <h5>" b
+<h5>$1</h5>$0
+endsnippet
+
+snippet h6 "XHTML <h6>" b
+<h6>$1</h6>$0
+endsnippet
+
+snippet h7 "XHTML <h7>" b
+<h7>$1</h7>$0
+endsnippet
+
+snippet '\bp' "XHTML <p>" r
+<p>$1</p>$0
+endsnippet
+
+snippet '\bstrong' "XHTML <strong>" r
+<strong>$1</strong>$0
+endsnippet
+
+snippet '\bem' "XHTML <em>" r
+<em>$1</em>$0
+endsnippet
+
+snippet '\bspan' "XHTML <span>" r
+<span>$1</span>$0
+endsnippet
+
+snippet title "XHTML <title>"
+<title>${1:`!p snip.rv = snip.basename or "Page Title"`}</title>$0
+endsnippet
+
+snippet fieldset "Fieldset"
+<fieldset id="${1/[\w\d]+|( )/(?1:_:\L$0\E)/g}" ${2:class="${3:}"}>
+	<legend>$1</legend>
+	
+	$0
+</fieldset>
+endsnippet
+
+snippet movie "Embed QT movie (movie)" b
+<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+	<param name="src" value="$1"`!p x(snip)` />
+	<param name="controller" value="$4"`!p x(snip)` />
+	<param name="autoplay" value="$5"`!p x(snip)` />
+	<embed src="${1:movie.mov}"
+		width="${2:320}" height="${3:240}"
+		controller="${4:true}" autoplay="${5:true}"
+		scale="tofit" cache="true"
+		pluginspage="http://www.apple.com/quicktime/download/"
+	`!p x(snip)` />
+</object>
+endsnippet
+
+snippet falsh "Description" !b
+<embed src="${1}" quality="high" width="${2:480}" height="${3:400}" align="middle" allowScriptAccess="sameDomain" allowFullscreen="true" type="application/x-shockwave-flash"></embed>$0
+endsnippet
+
+snippet page "xhtml精简模板"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>${1:ziggurat's document}</title>
+		<!--[if lte IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=7" />
+		<![endif]-->
+		<meta name="Keywords" content="提供一些关键字，并用短语表示该页面的内容" />
+		<meta name="Description" content="提供一到二句话来描叙该页面" />
+		<style type="text/css" media="all">
+			body{margin:0;padding:0;font-size:12px;font-family:宋体;background-color:#ffffff;}
+		</style>
+	</head>
+	<body>
+		$0
+	</body>
+</html>
+endsnippet
+
+snippet pageall "xhtml完全模板"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>${1:ziggurat's document}</title>
+		<meta name="Generator" content="gvim" />
+		<!--[if lte IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=7"/>
+		<![endif]-->
+		<meta name="Author" content="ziggurat" />
+		<meta name="Keywords" content="提供一些关键字，并用短语表示该页面的内容" />
+		<meta name="Description" content="提供一到二句话来描叙该页面" />
+		<meta name="Robots" content="all"/>
+		${2:<link href="" title="RSS" type="application/rss+xml" rel="alternate" />}
+		${3:<link rel="stylesheet" href="" type="text/css" />}
+		${4:<link rel="icon" href="" type='image/ico' />}
+		<style type="text/css" media="all">
+			${5:@import url("");}
+			body{margin:0;padding:0;font-size:12px;font-family:宋体;background-color:#ffffff;}
+		</style>
+		${6:<script type="text/javascript" src=""></script>}
+	</head>
+	<body>
+		${7}
+	</body>
+</html>
+endsnippet
+
+snippet "\bnote" "html comment" r
+<!-- $0 -->
+endsnippet
+
+snippet "\bzs" "vim fold start" r
+<!-- {{{ -->
+endsnippet
+
+snippet "\bze" "vim fold end" r
+<!-- }}} -->
+endsnippet
+
+#attribute
+snippet "\bcl" "set class" r
+class="$1"$0
+endsnippet
+
+snippet "\bid" "set id" r
+id="$1"$0
+endsnippet
+
+snippet ulli "包含实际内容的列表" !b
+<ul>
+	<li><a href="http://wow.178.com/201203/125775960915.html" title="熊猫人之谜每日截图：新牦牛人和影潘修道院">熊猫人之谜每日截图：新牦牛人和影潘修道院</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125797976000.html" title="在迷茫和混乱中成长：一名女wower的魔兽回忆">在迷茫和混乱中成长：一名女wower的魔兽回忆</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125796264945.html" title="电视剧明星也玩魔兽：好男人曾小贤85级了">电视剧明星也玩魔兽：好男人曾小贤85级了</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125792113243.html" title="CTM4.3：10人英雄模式死亡之翼的疯狂攻略心得">CTM4.3：10人英雄模式死亡之翼的疯狂攻略心得</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125782790875.html" title="DK单刷25人奥杜尔左右手BOSS科隆加恩心得">DK单刷25人奥杜尔左右手BOSS科隆加恩心得</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125782749301.html" title="一切只为DPS：增强萨换装流起手爆发3键宏">一切只为DPS：增强萨换装流起手爆发3键宏</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125782233337.html" title="4.3PVE：10H巨龙之魂前五号恢复萨治疗心得">4.3PVE：10H巨龙之魂前五号恢复萨治疗心得</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125780829928.html" title="原创：陪我的小战士一路走来的那些特效武器">原创：陪我的小战士一路走来的那些特效武器</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125780786799.html" title="原创故事：被嫌弃的侏儒法师学徒 暴风雪">原创故事：被嫌弃的侏儒法师学徒&mdash;&mdash;暴风雪</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125780310156.html" title="长篇连载小说：那些年，我们一起囧魔兽（13）">长篇连载小说：那些年，我们一起囧魔兽（13）</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125779258852.html" title="新手恢复萨PVP入门技巧及竞技场常识介绍">新手恢复萨PVP入门技巧及竞技场常识介绍</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125778197242.html" title="防骑单刷10人普通巫妖王战术细节及视频欣赏">防骑单刷10人普通巫妖王战术细节及视频欣赏</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125777353787.html" title="4.3PVP：S11赛季美服高分死术萨竞技场视频">4.3PVP：S11赛季美服高分死术萨竞技场视频</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125776510224.html" title="熊孩子真能玩：玩家各种恶搞造型骑上蓝龙妹">熊孩子真能玩：玩家各种恶搞造型骑上蓝龙妹</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125776105680.html" title="装满你的兽栏：魔兽世界4.3值得入手的猎人宝宝">装满你的兽栏：魔兽世界4.3值得入手的猎人宝宝</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125796975472.html" title="转控的艺术：4.3美服高端盗贼PVP视频欣赏">转控的艺术：4.3美服高端盗贼PVP视频欣赏</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125783633143.html" title="10H疯狂1坦3治疗打法战术分享及奥法输出心得">10H疯狂1坦3治疗打法战术分享及奥法输出心得</a><time>03/15</time></li>
+	<li><a href="http://d3.178.com/201203/125780780310.html" title="趣闻：暗黑3还不出，我妈妈表示不能忍！">趣闻：暗黑3还不出，我妈妈表示不能忍！</a><time>03/15</time></li>
+	<li><a href="http://wow.178.com/201203/125719068823.html" title="4.3PVE：10人英雄缚风者哈格拉细节攻略分享">4.3PVE：10人英雄缚风者哈格拉细节攻略分享</a><time>03/14</time></li>
+	<li><a href="http://wow.178.com/201203/125710235992.html" title="美服源质矿价格暴跌 战友复活系统疑是原罪">美服源质矿价格暴跌 战友复活系统疑是原罪</a><time>03/14</time></li>
+</ul>$0
+endsnippet
+
+# vim:ft=snippets:
+
+extends javascript
+extends css
+extends fabu
+extends html5

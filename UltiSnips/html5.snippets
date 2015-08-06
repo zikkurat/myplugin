@@ -1,0 +1,80 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+global !p
+def x(snip):
+    if snip.ft.startswith("x"):
+        snip.rv = ' /'
+    else:
+        snip.rv = ""
+endglobal
+
+############
+# Doctypes #
+############
+snippet html "xhtml精简模板" !b
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>${1:ziggurat's document}</title>
+		<meta name="Keywords" content="提供一些关键字，并用短语表示该页面的内容" />
+		<meta name="Description" content="提供一到二句话来描叙该页面" />
+		<base target="_blank" />
+		<style type="text/css" media="all">
+			body{margin:0;padding:0;font-size:12px;font-family:宋体;background-color:#ffffff;}
+		</style>
+	</head>
+	<body>
+		$0
+	</body>
+</html>
+endsnippet
+
+snippet section "XHTML <section>" b
+<section class="$1">
+	$2
+</section>$0
+endsnippet
+
+snippet fi "XHTML figure" b
+<figure>
+	<img src="$1" />
+	<figcaption>$2</figcaption>
+</figure>$0
+endsnippet
+
+snippet '\btime' "XHTML <time>" r
+<time>$1</time>$0
+endsnippet
+
+snippet '\baside' "XHTML <asid>" r
+<aside class="$1">
+	$2
+</aside>$0
+endsnippet
+
+snippet '\barticle' "XHTML <article>" r
+<article>
+	$1
+</article>$0
+endsnippet
+
+snippet '\bhgroup' "XHTML <hgroup>" r
+<hgroup>
+	$1
+</hgroup>$0
+endsnippet
+
+snippet '\bheader' "XHTML <header>" r
+<header>
+	$1
+</header>$0
+endsnippet
+
+snippet '\bnav' "XHTML <nav>" r
+<nav>
+	$1
+</nav>$0
+endsnippet

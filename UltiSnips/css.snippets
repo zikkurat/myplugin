@@ -1,0 +1,265 @@
+###########################################################################
+#                    Most of these came from TextMate                     #
+###########################################################################
+
+snippet ! "!important CSS (!)"
+${1:!important}
+endsnippet
+
+snippet ii "new css" !b
+$1{
+	$2
+}$0
+endsnippet
+
+snippet fix "" !b
+/* fix */
+.group:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+*+html .group{display:inline-block;}
+* html .group{height:1%;}
+endsnippet
+
+snippet filter "ie6 filter" !b
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src="$1");$0
+endsnippet
+
+snippet bg "background" i
+background:${1:@${2:black} }url('${3:@{url}$4}')${5: no-repeat}${6: left}${7: top};$0
+endsnippet
+
+snippet bgc "background-color" i
+background-color:@${1:black};$0
+endsnippet
+
+snippet bga "background-attachment" i
+background-attachment:${1:scroll/fixed};$0
+endsnippet
+
+snippet 透明 "background-color:transparent" i
+transparent$0
+endsnippet
+
+snippet tm "background-color:transparent" i
+transparent$0
+endsnippet
+
+snippet bgi "background-image" i
+background-image:${1:url($2)};$0
+endsnippet
+
+snippet bgp "background-position" i
+background-position:${1:left top};$0
+endsnippet
+
+snippet bgr "background-repeat" i
+background-repeat:${1:repeat/repeat-x/repeat-y/no-repeat};$0
+endsnippet
+
+snippet bgall "background:  color image repeat attachment position (background)"
+background:${6: #${1:DDD}} url($2) ${3:repeat/repeat-x/repeat-y/no-repeat} ${4:scroll/fixed} ${5:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos};$0
+endsnippet
+
+snippet "\bb" "border" r
+border:${1:1}px${2: dotted}${3: solid} @${4:black};$0
+endsnippet
+
+snippet bt "border-top" i
+border-top:${1:1}px${2: dotted}${3: solid} @${4:black};$0
+endsnippet
+
+snippet br "border-right" i
+border-right:${1:1}px${2: dotted}${3: solid} @${4:black};$0
+endsnippet
+
+snippet bb "border-bottom" i
+border-bottom:${1:1}px${2: dotted}${3: solid} @${4:black};$0
+endsnippet
+
+snippet bl "border-left" i
+border-left:${1:1}px${2: dotted}${3: solid} @${4:black};$0
+endsnippet
+
+snippet bs "border-style: size style color (border)" i
+border-style:${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
+endsnippet
+
+snippet bw "border-width" i
+border-width:$1;$0
+endsnippet
+
+snippet btw "border-width" i
+border-top-width:${1:1}px;$0
+endsnippet
+
+snippet brw "border-width" i
+border-right-width:${1:1}px;$0
+endsnippet
+
+snippet bbw "border-width" i
+border-bottom-width:${1:1}px;$0
+endsnippet
+
+snippet blw "border-width" i
+border-left-width:${1:1}px;$0
+endsnippet
+
+snippet "\bc" "color:  color-hex (color)" r
+color:@${1:black};$0
+endsnippet
+
+snippet cursor "cursor: type (cursor)" i
+cursor:${1:default/auto/crosshair/pointer/move/*-resize/text/wait/help};$0
+endsnippet
+
+snippet dis "display: block (display)" i
+display:${1:inline-block};$0
+endsnippet
+
+snippet fl "float: left:right:none (float)" i
+float:${1:left};$0
+endsnippet
+
+snippet ffy "font-family: family (font)" i
+font-family:${1:verdana,Arial,tahoma};$0
+endsnippet
+
+snippet ffz "font-family: family (font)" i
+font-family:${1:,微软雅黑,宋体};$0
+endsnippet
+
+snippet fs "font-size: size (font)" i
+font-size:${1:14px};$0
+endsnippet
+
+snippet fst "font-style: normal:italic:oblique (font)" i
+font-style:${1:normal/italic/oblique};$0
+endsnippet
+
+snippet fw "font-weight: weight (font)" i
+font-weight:${1:bold};$0
+endsnippet
+
+snippet fall "font: style variant weight size:line-height font -family (font)" i
+font:${1:normal/italic/oblique} ${2:normal/small-caps} ${3:normal/bold} ${4:1em/1.5em} ${5:Arial}, ${6:sans-}serif;$0
+endsnippet
+
+snippet ls "list-style" i
+list-style:${1:none};$0
+endsnippet
+
+snippet "\bm" "margin" r
+margin:$1;$0
+endsnippet
+
+snippet mt "margin-top" i
+margin-top:${1:10}px;$0
+endsnippet
+
+snippet mr "margin-right" i
+margin-right:${1:10}px;$0
+endsnippet
+
+snippet mb "margin-bottom" i
+margin-bottom:${1:10}px;$0
+endsnippet
+
+snippet ml "margin-left" b
+margin-left:${1:10}px;$0
+endsnippet
+
+snippet "\bo" "overflow: typepflow)" r
+overflow:${1:hidden};$0
+endsnippet
+
+snippet pt "padding-top" i
+padding-top:${1:10}px;$0
+endsnippet
+
+snippet pr "padding-right" i
+padding-right:${1:10}px;$0
+endsnippet
+
+snippet pb "padding-bottom" i
+padding-bottom:${1:10}px;$0
+endsnippet
+
+snippet pl "padding-left" i
+padding-left:${1:10}px;$0
+endsnippet
+
+snippet pos "position: type (position)" i
+position:${1:static}${2:relative}${3:absolute}${4:fixed};$0
+endsnippet
+
+snippet posa "position: type (position)" i
+position:${1:absolute};$0
+endsnippet
+
+snippet posr "position: type (position)" i
+position:${1:relative};$0
+endsnippet
+
+snippet posf "position: type (position)" i
+position:${1:fixed};$0
+endsnippet
+
+snippet poss "position: type (position)" i
+position:${1:static};$0
+endsnippet
+
+snippet scrollbar "scrollbar"
+scrollbar-base-color:${1:#CCCCCC};${2:
+scrollbar-arrow-color:${3:#000000};
+scrollbar-track-color:${4:#999999};
+scrollbar-3dlight-color:${5:#EEEEEE};
+scrollbar-highlight-color:${6:#FFFFFF};
+scrollbar-face-color:${7:#CCCCCC};
+scrollbar-shadow-color:${9:#999999};
+scrollbar-darkshadow-color:${8:#666666};}
+endsnippet
+
+snippet sel "selection"
+$1::-moz-selection,
+$1::selection {
+	color: ${2:inherit};
+	background: ${3:inherit};
+}
+endsnippet
+
+snippet "\bta" "text-align: left:center:right (txt)" r
+text-align:${1:center};$0
+endsnippet
+
+snippet tde "text-decoration" i
+text-decoration:${1:underline}${2:none};$0
+endsnippet
+
+
+snippet "\bti" "text-indent: length (text)" r
+text-indent:${1:2}em;$0
+endsnippet
+
+snippet ws "white-space:  normal:pre:nowrap (white)" i
+white-space:${1:nowrap};$0
+endsnippet
+
+snippet z "z-index: index (z)" i
+z-index:$1;$0
+endsnippet
+
+snippet lh "line-height" i
+line-height:${1:}px;$0
+endsnippet
+
+snippet hov "link" !b
+$1:link,$1:visited{$2}
+$1:hover,$1:active{$3}
+endsnippet
+
+snippet bc "border-collapse" !b
+border-collapse:${1:separate}${2:collapse};$0
+endsnippet
+
+extends css3
+extends less
+# vim:ft=snippets:

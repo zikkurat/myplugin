@@ -1,0 +1,139 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+snippet get "Get Elements" i
+getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')$0
+endsnippet
+
+snippet :f "Object Method"
+${1:method_name}:function(${2:attribute}){
+	$0
+},
+endsnippet
+
+snippet : "Object key key: 'value'" i
+"${1:key}":"${2:value}"$0
+endsnippet
+
+snippet proto "Prototype (proto)"
+${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}){
+	${0:// body...}
+};
+endsnippet
+
+snippet for "javascript for" !b
+for (var i = 0; i < $1; i++) {
+	$0
+}
+endsnippet
+
+snippet "\bif" "javascript if" r
+if ($1) {
+	$0
+}
+endsnippet
+
+snippet ife "javascript else" !b
+if ($1) {
+	$0
+} else {
+}
+endsnippet
+
+snippet "\belse" "javascript else" r
+else {
+	$0
+}
+endsnippet
+
+snippet doc "document" i
+document.$0
+endsnippet
+
+snippet fun "function" !b
+var $1 = function($2) {
+		$0
+};
+endsnippet
+
+snippet func "function" i
+function($1) {$2}$0
+endsnippet
+
+snippet sw "javascript" !b
+switch($1)
+{
+	case '$2':
+		$3
+		break;
+	default:
+		$0
+}
+endsnippet
+
+snippet case "javascript" !b
+case '$1':
+	$2
+	break;
+$0
+endsnippet
+
+snippet crele "createElement" i
+createElement('$1')$0
+endsnippet
+
+snippet bac "appendChild" i
+appendChild($1)$0
+endsnippet
+
+snippet ihtml "innerHTML" i
+innerHTML
+endsnippet
+
+snippet bcn "childNode" i
+childNode$0
+endsnippet
+
+snippet rc "removeChild" i
+removeChild$0
+endsnippet
+
+snippet pn "parentNode" i
+parentNode$0
+endsnippet
+
+snippet sa "setAttribute" i
+setAttribure('$1','$2')$0
+endsnippet
+
+snippet ga "getAttribute" i
+getAttribute('$1')$0
+endsnippet
+
+snippet cdf "createDocumentFragment" i
+createDocumentFragment($1)$0
+endsnippet
+
+snippet fc "firstChild" i
+firstChild$0
+endsnippet
+
+snippet lc "lastCild" i
+lastChild$0
+endsnippet
+
+snippet ns "nextSibling" i
+nextSibling$0
+endsnippet
+
+snippet log "console.log" i
+console.log($1);$0
+endsnippet
+
+snippet con "firebug control"
+console.info("$1"${2:,$3});$0
+endsnippet
+
+extends jquery
+
+# vim:ft=snippets:

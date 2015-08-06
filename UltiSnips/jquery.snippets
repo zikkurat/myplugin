@@ -1,0 +1,61 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+snippet ready "jquery ready" !b
+$(document).ready(function(){
+	$0
+});
+endsnippet
+
+snippet "\bso" "jquery $()" r
+$($1)$0
+endsnippet
+
+snippet "\bs'" "jquery $()" r
+$('$1')$0
+endsnippet
+
+snippet "\bcss" "jquery css()" r
+css({$1:${2:'$3'}$0})
+endsnippet
+
+snippet "\beach" "jquery each()" r
+each(function(${1:i, o}) {
+	$2
+})$0
+endsnippet
+
+snippet "\bdh" "jquery animate()" r
+animate({$1},"slow")
+endsnippet
+
+snippet "\bdhall" "jquery animate()" r
+animate({$1},"${2:fast}"${3:,"${4:easeInQuad}"}${5:,function(){$6}})
+endsnippet
+
+snippet "\bhover" "jquery animate()" r
+hover(function() {
+	$1
+}, function() {})$0
+endsnippet
+
+snippet con "firebug control"
+console.info("$1"${2:,$3});$0
+endsnippet
+
+snippet "\bajax" "jquery ajax" r
+$.ajax({
+	url: '$1',
+	type: '${2:post}',
+	dataType: '${3:json}',
+	cache: 'false',
+	context: ${5:this},
+	data: {
+		$4
+	},
+	success: function(data) {
+		$6
+	},
+	error: function() {}
+});$0
+endsnippet
