@@ -25,7 +25,7 @@ function! s:InitWindow() abort
     setlocal noswapfile
     setlocal nobuflisted
     setlocal nomodifiable
-    setlocal nolist
+    " setlocal nolist
     setlocal nowrap
     setlocal winfixwidth
     setlocal textwidth=0
@@ -39,7 +39,7 @@ function! s:InitWindow() abort
     setlocal foldmethod&
     setlocal foldexpr&
 
-    set cpoptions&vim
+    " set cpoptions&vim
 
 	call s:mapkeys()
 	call s:update()
@@ -89,24 +89,29 @@ function! s:goto_win(winnr, ...) abort
 endfunction
 "}}}
 
-function! s:jump()
-	let l = winline()
+function! s:jump(how)
+	let l = line('.')
 	let at = g:jskey_lines[l - 1][1]
 	let w = bufwinnr(g:jskey_jsBuf)
 	call s:goto_win(w)
-	normal at.'gg'
+	execute 'normal '.(at + 1).'Gzvz.'
+	if a:how
+		call s:goto_win(bufwinnr(g:jskey_title))
+	endif
 endfunction
 
 "{{{ s:mapkeys()
 function! s:mapkeys()
     nnoremap <script> <silent> <buffer> u :call <SID>update()<CR>
-    nnoremap <script> <silent> <buffer> <Enter> :call <SID>jump()<CR>
+    nnoremap <script> <silent> <buffer> <Enter> :call <SID>jump(0)<CR>
+    nnoremap <script> <silent> <buffer> <2-LeftMouse> :call <SID>jump(0)<CR>
+    nnoremap <script> <silent> <buffer> p :call <SID>jump(1)<CR>
 endfunction
 "}}}
 
 function! s:update()
 	if g:jskey_jsBuf != ''
-    setlocal modifiable
+		setlocal modifiable
 python << EOM
 import vim, re
 file_name = vim.eval('g:jskey_jsFile')
@@ -114,40 +119,111 @@ buf_idx = int(vim.eval('g:jskey_jsBuf'))
 win_idx = int(vim.eval('g:jskey_jsWin'))
 buf = vim.buffers[buf_idx]
 
-re_var = re.compile(r'\s*var\s([a-zA-Z_]+)\s*=')
+re_var = re.compile(r'\s*var\s([a-zA-Z_]+)\s*=.+{\s*$')
 re_pro = re.compile(r'\s*([a-zA-Z_]+)\.prototype\s*=')
-comment = re.compile(r'{{{|}}}')
+re_comment = re.compile(r'{{{|}}}')
+
+
+#{{{findRange
+def findRange(start):
+	_end = start
+	_indent = 0
+	_break = False
+
+	s = buf[_end].count('{')
+	e = buf[_end].count('}')
+
+	if s == e:
+		return [start, start]
+
+	while _break == False:
+		s = buf[_end].count('{')
+		e = buf[_end].count('}')
+		_indent = _indent + (s - e)
+		if _indent != 0:
+			_end = _end + 1
+		else:
+			_break = True
+
+	return [start, _end]
+#}}}
+
+#{{{ getKey
+def getKey(start):
+	_lines = []
+	_line = []
+	_indent = 0
+	_len = len(buf)
+	_next = start
+
+	while _next < _len:
+		print _lines
+		_re = comment.search(buf[_next])
+		_s = _e = 0
+		if not _re:
+			_s = buf[_next].count('{')
+			_e = buf[_next].count('}')
+			_indent = _indent + (_s - _e)
+
+		_line = []
+		_re = re_var.match(buf[_next])
+		if _re:
+			_line.append(_indent * '\t' + _re.group(1))
+			_line.append(_next)
+			_lines.append(_line)
+
+		if _s == _e:
+			_next += 1
+			continue
+		else:
+			if _indent == 0:
+				return _lines
+
+			_lines.extend(getKey(_next + 1))
+			_next = _lines[-1][1] + 1
+			continue
+
+		_next += 1
+
+	return _lines
+
+#}}}
+
 
 lines = []
+line_local = 0
+buf_len = len(buf)
 indent = 0
-for i in range(len(buf)):
-	line = []
-	re = re_var.match(buf[i])
-	if re:
-		if indent == 0:
-			line.append(indent * '\t' + re.group(1))
-			line.append(i)
-			lines.append(line)
+cur_line = ''
+while line_local < buf_len:
+	cur_line = buf[line_local]
 
-	re = re_pro.match(buf[i])
-	if re:
-		if indent == 0:
-			line.append(indent * '\t' + re.group(1) + '......prototype')
-			line.append(i)
-			lines.append(line)
-	
-	re = comment.search(buf[i])
-	if not re:
-		s = buf[i].count('{')
-		e = buf[i].count('}')
-		indent = indent + (s - e)
+	_re = re_comment.search(cur_line)
+	if _re:
+		line_local += 1
+		continue
+
+	s = cur_line.count('{')
+	e = cur_line.count('}')
+
+	_re = re_var.match(cur_line)
+	if _re:
+		lines.append([indent * '\t' + _re.group(1), line_local])
+			
+
+	indent = indent + (s - e)
+	line_local += 1
+
+
+
 
 vim.current.buffer[:] = [a for a,b in lines]
 
+#全局变量赋值，供跳转使用
 vim.vars['jskey_lines'] = lines
 
 EOM
-    setlocal nomodifiable
+		setlocal nomodifiable
 	endif
 endfunction
 
