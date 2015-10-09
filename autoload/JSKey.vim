@@ -36,7 +36,10 @@ function! s:InitWindow() abort
     " Reset fold settings in case a plugin set them globally to something
     " expensive. Apparently 'foldexpr' gets executed even if 'foldenable' is
     " off, and then for every appended line (like with :put).
-    setlocal foldmethod&
+    "setlocal foldmethod&
+    setlocal foldmethod=indent
+    setlocal foldtext=substitute(getline(v:foldstart),'^.+:\s*','','g')
+
     setlocal foldexpr&
 
     " set cpoptions&vim
@@ -49,6 +52,10 @@ endfunction
 
 "{{{ JSKey#openWin()
 function! JSKey#openWin()
+	if g:jskey_jsBuf == ''
+		return
+	endif
+
 	let jsbar = bufwinnr(g:jskey_title)
 
 	if jsbar != -1
@@ -119,9 +126,13 @@ buf_idx = int(vim.eval('g:jskey_jsBuf'))
 win_idx = int(vim.eval('g:jskey_jsWin'))
 buf = vim.buffers[buf_idx]
 
-re_var = re.compile(r'\s*var\s([a-zA-Z_]+)\s*=.+{\s*$')
-re_pro = re.compile(r'\s*([a-zA-Z_]+)\.prototype\s*=')
+re_var = re.compile(r'\s*var\s([a-z_][a-zA-Z_]*)\s*=.+{\s*$')
+re_class = re.compile(r'\s*var\s([A-Z][a-zA-Z_]*)\s*=.+{\s*$')
+re_pro = re.compile(r'\s*([A-Z][a-zA-Z_]*)\.prototype\s*=')
+re_obj = re.compile(r'\s*([a-zA-Z_]+)\s*:\s*{\s*')
+re_methods = re.compile(r'\s*([a-zA-Z_]+)\s*:\s*function\s*')
 re_comment = re.compile(r'{{{|}}}')
+re_exclude = re.compile(r'success|error|complete|data')
 
 
 #{{{findRange
@@ -209,6 +220,41 @@ while line_local < buf_len:
 	_re = re_var.match(cur_line)
 	if _re:
 		lines.append([indent * '\t' + _re.group(1), line_local])
+		indent = indent + (s - e)
+		line_local += 1
+		continue
+
+	_re = re_class.match(cur_line)
+	if _re:
+		lines.append([indent * '\t' + _re.group(1) + '---Class', line_local])
+		indent = indent + (s - e)
+		line_local += 1
+		continue
+
+	_re = re_pro.match(cur_line)
+	if _re:
+		lines.append([indent * '\t' + _re.group(1) + '---Prototype', line_local])
+		indent = indent + (s - e)
+		line_local += 1
+		continue
+
+	_re = re_obj.match(cur_line)
+	if _re:
+		__re = re_exclude.search(cur_line)
+		if not __re:
+			lines.append([indent * '\t' + _re.group(1) + '---Object', line_local])
+			indent = indent + (s - e)
+			line_local += 1
+			continue
+
+	_re = re_methods.match(cur_line)
+	if _re:
+		__re = re_exclude.search(cur_line)
+		if not __re:
+			lines.append([indent * '\t' + _re.group(1) + '---Methods', line_local])
+			indent = indent + (s - e)
+			line_local += 1
+			continue
 			
 
 	indent = indent + (s - e)
@@ -218,6 +264,10 @@ while line_local < buf_len:
 
 
 vim.current.buffer[:] = [a for a,b in lines]
+vim.command('match WarningMsg /.*---Class/')
+vim.command('2match Question /.*---Prototype/')
+vim.command('3match Conceal /.*---Object/')
+vim.command('normal zM')
 
 #全局变量赋值，供跳转使用
 vim.vars['jskey_lines'] = lines
