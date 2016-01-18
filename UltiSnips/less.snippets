@@ -44,16 +44,32 @@ li$1{
 }$0
 endsnippet
 
-snippet darken "color" !b
+snippet darken "color" i
 darken(@${1:black},${2:10}%)$0
 endsnippet
 
-snippet lighten "color" !b
+snippet lighten "color" i
 lighten(@${1:black},${2:10}%)$0
 endsnippet
 
-snippet fade "color" !b
+snippet fade "color" i
 fade(@${1:black},${2:10}%)$0
+endsnippet
+
+snippet lessfn "增加一定数值的颜色饱和度" i
+saturate(${1:color's value},${2:10}%)$0
+endsnippet
+
+snippet lessfn "降低一定数值的颜色饱和度" i
+desaturate(${1:color's value},${2:10}%)$0
+endsnippet
+
+snippet lessfn "任意方向旋转颜色的色相角度" i
+spin(${1:color's value},${2:360}%)$0
+endsnippet
+
+snippet lessfn "根据比例混合两种颜色，包括计算不透明度" i
+mix(${1:color's value1},${2:color's value2},${3:50}%)$0
 endsnippet
 
 extends css
