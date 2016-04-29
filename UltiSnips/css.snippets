@@ -19,9 +19,9 @@ snippet fix "" !b
 * html .group{height:1%;}
 endsnippet
 
-snippet filter "ie6 filter" !b
-_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src="$1");$0
-endsnippet
+#snippet filter "ie6 filter" !b
+#_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src="$1");$0
+#endsnippet
 
 snippet bg "background" i
 background:${1:@${2:black} }url('${3:@{url}$4}')${5: no-repeat}${6: left}${7: top};$0
@@ -55,9 +55,9 @@ snippet bgr "background-repeat" i
 background-repeat:${1:repeat/repeat-x/repeat-y/no-repeat};$0
 endsnippet
 
-snippet bgall "background:  color image repeat attachment position (background)"
-background:${6: #${1:DDD}} url($2) ${3:repeat/repeat-x/repeat-y/no-repeat} ${4:scroll/fixed} ${5:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos};$0
-endsnippet
+#snippet bgall "background:  color image repeat attachment position (background)"
+#background:${6: #${1:DDD}} url($2) ${3:repeat/repeat-x/repeat-y/no-repeat} ${4:scroll/fixed} ${5:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos};$0
+#endsnippet
 
 snippet "\bb" "border" r
 border:${1:1}px${2: dotted}${3: solid} @${4:black};$0
@@ -139,9 +139,9 @@ snippet fw "font-weight: weight (font)" i
 font-weight:${1:bold};$0
 endsnippet
 
-snippet fall "font: style variant weight size:line-height font -family (font)" i
-font:${1:normal/italic/oblique} ${2:normal/small-caps} ${3:normal/bold} ${4:1em/1.5em} ${5:Arial}, ${6:sans-}serif;$0
-endsnippet
+#snippet fall "font: style variant weight size:line-height font -family (font)" i
+#font:${1:normal/italic/oblique} ${2:normal/small-caps} ${3:normal/bold} ${4:1em/1.5em} ${5:Arial}, ${6:sans-}serif;$0
+#endsnippet
 
 snippet ls "list-style" i
 list-style:${1:none};$0
@@ -207,27 +207,34 @@ snippet poss "position: type (position)" i
 position:${1:static};$0
 endsnippet
 
-snippet scrollbar "scrollbar"
-scrollbar-base-color:${1:#CCCCCC};${2:
-scrollbar-arrow-color:${3:#000000};
-scrollbar-track-color:${4:#999999};
-scrollbar-3dlight-color:${5:#EEEEEE};
-scrollbar-highlight-color:${6:#FFFFFF};
-scrollbar-face-color:${7:#CCCCCC};
-scrollbar-shadow-color:${9:#999999};
-scrollbar-darkshadow-color:${8:#666666};}
-endsnippet
+#snippet scrollbar "scrollbar"
+#scrollbar-base-color:${1:#CCCCCC};${2:
+#scrollbar-arrow-color:${3:#000000};
+#scrollbar-track-color:${4:#999999};
+#scrollbar-3dlight-color:${5:#EEEEEE};
+#scrollbar-highlight-color:${6:#FFFFFF};
+#scrollbar-face-color:${7:#CCCCCC};
+#scrollbar-shadow-color:${9:#999999};
+#scrollbar-darkshadow-color:${8:#666666};}
+#endsnippet
 
 snippet sel "selection"
-$1::-moz-selection,
-$1::selection {
-	color: ${2:inherit};
-	background: ${3:inherit};
+::-moz-selection{
+	color: ${1:#ff0000};
+	background: ${2:#ffffff};
+}
+::selection {
+	color: $1;
+	background: $2;
 }
 endsnippet
 
 snippet "\bta" "text-align: left:center:right (txt)" r
 text-align:${1:center};$0
+endsnippet
+
+snippet "\bto" "text-overflow: clip:ellipsis (txt)" r
+text-align:${1:clip}${2:ellipsis};$0
 endsnippet
 
 snippet tde "text-decoration" i
