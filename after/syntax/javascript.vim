@@ -14,7 +14,7 @@
 "hi htmlItalic              gui=underline   guifg=bg      guibg=#44cc77
 "hi htmlBoldItalic          gui=underline   guifg=bg      guibg=#66aa33
 
-hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
-hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
-hi CursorLine	guibg=#293d29
-hi PreProc		gui=none		guifg=#44cc77	guibg=bg
+"hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
+"hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
+"hi CursorLine	guibg=#293d29
+"hi PreProc		gui=none		guifg=#44cc77	guibg=bg
