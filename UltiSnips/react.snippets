@@ -1,0 +1,57 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+snippet rclass "React class"
+class ${1:class_name} extends React.Component {
+	$0
+}
+endsnippet
+
+snippet rcr "React render"
+render() {
+	return (
+		$1
+	);
+}
+endsnippet
+
+snippet rcinit "React init class"
+constructor(props) {
+	super(props);
+
+	this.state = {
+		$1: $2
+	};
+}
+endsnippet
+
+snippet rccd "React componentDidMount"
+componentDidMount() {
+	$1
+}
+endsnippet
+
+snippet rccw "React componentWillUnmount"
+componentWillUnmount() {
+	$1
+}
+endsnippet
+
+snippet rcss "React setState"
+this.setState(${1:{$2}});
+endsnippet
+
+snippet rcs "React State"
+this.state.$0
+endsnippet
+
+snippet rcp "React Props"
+this.props.$0
+endsnippet
+
+snippet rcdp "React default props"
+this.defaultProps = {
+	$1:$0
+};
+endsnippet

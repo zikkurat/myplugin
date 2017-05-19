@@ -1,28 +1,91 @@
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
+
+#Elements------------------------------------
 snippet get "Get Elements" i
 getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')$0
-endsnippet
-
-snippet :f "Object Method"
-${1:method_name}:function(${2:attribute}){
-	$0
-},
 endsnippet
 
 snippet : "Object key key: 'value'" i
 "${1:key}":"${2:value}"$0
 endsnippet
 
-snippet proto "Prototype (proto)"
-${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}){
-	${0:// body...}
+snippet doc "document" i
+document.$0
+endsnippet
+
+snippet crele "createElement" i
+createElement('$1')$0
+endsnippet
+
+#Function------------------------------------
+snippet fun "function" !b
+const $1 = function($2) {
+		$0
 };
 endsnippet
 
+snippet func "function" i
+function($1) {$2}$0
+endsnippet
+
+snippet -- "function" i
+$1 => $2
+endsnippet
+
+snippet == "function" i
+($1) => {
+	$2
+}$0
+endsnippet
+
+snippet >> "function" i
+${1:name} = ($2) => {
+	$3
+}$0
+endsnippet
+
+#Language------------------------------------
+snippet class "javascript class" !b
+class ${1:class_name} {
+	constructor(${2:param}) {
+		$3
+	}
+}$0
+endsnippet
+
+snippet eclass "javascript class" !b
+class ${1:class_name} extends ${2:parent_class} {
+	constructor(${3:param}) {
+		super(${4:param});
+		$5
+	}
+}$0
+endsnippet
+
+snippet let "javascript let" !b
+let $1 = $2;$0
+endsnippet
+
+snippet const "javascript const" !b
+const $1 = $2;$0
+endsnippet
+
 snippet for "javascript for" !b
-for (var i = 0; i < $1; i++) {
+for (let i = 0; i < $1; i++) {
+	$0
+}
+endsnippet
+
+snippet forin "javascript for" !b
+for (let ${1:a} in ${2:b}) {
+	$0
+}
+endsnippet
+
+snippet forof "javascript for" !b
+for (let ${1:a} of ${2:b}) {
 	$0
 }
 endsnippet
@@ -46,20 +109,6 @@ else {
 }
 endsnippet
 
-snippet doc "document" i
-document.$0
-endsnippet
-
-snippet fun "function" !b
-var $1 = function($2) {
-		$0
-};
-endsnippet
-
-snippet func "function" i
-function($1) {$2}$0
-endsnippet
-
 snippet sw "javascript" !b
 switch($1)
 {
@@ -78,35 +127,39 @@ case '$1':
 $0
 endsnippet
 
-snippet crele "createElement" i
-createElement('$1')$0
+snippet while "javascript" !b
+while ($1) {
+	$0
+}
 endsnippet
 
-snippet bac "appendChild" i
-appendChild($1)$0
-endsnippet
-
+#dom console---------------------------------------
 snippet ihtml "innerHTML" i
 innerHTML
 endsnippet
 
-snippet bcn "childNode" i
+snippet doma "appendChild" i
+appendChild($1)$0
+endsnippet
+
+
+snippet domc "childNode" i
 childNode$0
 endsnippet
 
-snippet rc "removeChild" i
+snippet domrc "removeChild" i
 removeChild$0
 endsnippet
 
-snippet pn "parentNode" i
+snippet domp "parentNode" i
 parentNode$0
 endsnippet
 
-snippet sa "setAttribute" i
+snippet domsa "setAttribute" i
 setAttribure('$1','$2')$0
 endsnippet
 
-snippet ga "getAttribute" i
+snippet domga "getAttribute" i
 getAttribute('$1')$0
 endsnippet
 
@@ -114,26 +167,103 @@ snippet cdf "createDocumentFragment" i
 createDocumentFragment($1)$0
 endsnippet
 
-snippet fc "firstChild" i
+snippet domf "firstChild" i
 firstChild$0
 endsnippet
 
-snippet lc "lastCild" i
+snippet doml "lastCild" i
 lastChild$0
 endsnippet
 
-snippet ns "nextSibling" i
+snippet doms "nextSibling" i
+sibling$0
+endsnippet
+
+snippet domns "nextSibling" i
 nextSibling$0
 endsnippet
 
+#dom fn------------------------------------
+snippet domfn "innerHTML(ihtml)" i
+innerHTML
+endsnippet
+
+snippet domfn "appendChild(doma)" i
+appendChild($1)$0
+endsnippet
+
+
+snippet domfn "childNode(domc)" i
+childNode$0
+endsnippet
+
+snippet domfn "removeChild(domr)" i
+removeChild$0
+endsnippet
+
+snippet domfn "parentNode(domp)" i
+parentNode$0
+endsnippet
+
+snippet domfn "setAttribure(domsa)" i
+setAttribure('$1','$2')$0
+endsnippet
+
+snippet domfn "getAttribute(domga)" i
+getAttribute('$1')$0
+endsnippet
+
+snippet domfn "createDocumentFragment(cdf)" i
+createDocumentFragment($1)$0
+endsnippet
+
+snippet domfn "firstChild(domf)" i
+firstChild$0
+endsnippet
+
+snippet domfn "lastChild(doml)" i
+lastChild$0
+endsnippet
+
+snippet domfn "sibling(doms)" i
+sibling$0
+endsnippet
+
+snippet domfn "nextSibling(domns)" i
+nextSibling$0
+endsnippet
+
+#console-----------------------------------
 snippet log "console.log" i
 console.log($1);$0
 endsnippet
 
-snippet con "firebug control"
+snippet con "assert 判断表达式是否为真"
+console.assert($1);$0
+endsnippet
+
+snippet dir "dir"
+console.dir($1);$0
+endsnippet
+
+snippet con "info"
 console.info("$1"${2:,$3});$0
 endsnippet
 
-extends jquery
+snippet con "time"
+console.time('----- Timer $1-----');
+console.timeEnd('----- Timer $2-----');
+endsnippet
+
+snippet con "trace 跟踪"
+console.trace();
+endsnippet
+
+snippet con "profile 性能分析"
+console.profile('--- Start profile');
+console.profileEnd();
+endsnippet
+
+extends jquery, react
 
 # vim:ft=snippets:
