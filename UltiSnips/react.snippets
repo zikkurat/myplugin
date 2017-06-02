@@ -39,7 +39,7 @@ componentWillUnmount() {
 endsnippet
 
 snippet rcss "React setState"
-this.setState(${1:{$2}});
+this.setState({$1});
 endsnippet
 
 snippet rcs "React State"
@@ -47,11 +47,11 @@ this.state.$0
 endsnippet
 
 snippet rcp "React Props"
-this.props.$0
+${1:this.}props.$0
 endsnippet
 
 snippet rcdp "React default props"
-this.defaultProps = {
-	$1:$0
-};
+${1:class_name}.defaultProps = {
+	$1
+};$0
 endsnippet
