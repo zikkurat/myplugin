@@ -179,15 +179,12 @@ Plugin 'terryma/vim-multiple-cursors'				"多行文本编辑
 Plugin 'rkulla/pydiction'							"python自动完成
 
 "颜色方案
-"Plugin 'vim-scripts/doorhinge.vim'
-"Plugin 'vim-scripts/HHCS'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'ajh17/Spacegray.vim'
-"Plugin 'yuratomo/neon.vim'
+Plugin 'yuratomo/neon.vim'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'KabbAmine/yowish.vim'
 Plugin 'morhetz/gruvbox'
-Plugin 'tomasr/molokai'
+"Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/Wombat'
 
 "中文帮助
@@ -357,8 +354,10 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 "==================================================================================================================================
 	"标签
 	nmap <F2> :tabnew<cr>
-	nmap <C-j> :tabp<cr>
-	nmap <C-k> :tabn<cr>
+	nmap <C-S-j> :tabp<cr>
+	nmap <C-S-k> :tabn<cr>
+	nmap <C-j> :bprevious<cr>
+	nmap <C-k> :bnext<cr>
 
 "	nmap <F5> :new<cr>
 "	nmap <F6> :vnew<cr>
@@ -597,7 +596,8 @@ let g:airline_theme='alduin'
 if(has('gui_running'))
 
 	if(has('win32'))
-		set guifont=Source_Code_Pro:h12
+		set guifont=Source_Code_Pro_for_Powerline:h12
+		"set guifont=Noto_Mono_for_Powerline:h12
 		set guifontwide=Yahei_Mono:h12
 	else
 		set guifont=mononoki:h16
