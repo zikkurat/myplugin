@@ -156,6 +156,7 @@ endif
 
 "Plugins
 Plugin 'VundleVim/Vundle.vim'						"插件管理依赖
+
 Plugin 'majutsushi/tagbar'							"tarbar没什么好说的
 Plugin 'vim-scripts/matchit.zip'					"快速跳转到配对的符号或标签
 Plugin 'jlanzarotta/bufexplorer'					"缓冲区管理
@@ -177,15 +178,17 @@ Plugin 'vim-scripts/Mark'							"高度指定关键字
 Plugin 'terryma/vim-multiple-cursors'				"多行文本编辑
 Plugin 'rkulla/pydiction'							"python自动完成
 
-"Color schemes
-Plugin 'vim-scripts/doorhinge.vim'
-Plugin 'vim-scripts/HHCS'
+"颜色方案
+"Plugin 'vim-scripts/doorhinge.vim'
+"Plugin 'vim-scripts/HHCS'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'ajh17/Spacegray.vim'
-Plugin 'yuratomo/neon.vim'
+"Plugin 'yuratomo/neon.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'KabbAmine/yowish.vim'
+"Plugin 'KabbAmine/yowish.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'tomasr/molokai'
+Plugin 'vim-scripts/Wombat'
 
 "中文帮助
 Plugin 'zikkurat/vimdoc'
@@ -278,6 +281,118 @@ set foldlevel=0 "设置折行深度，自动折行时设定
 "set foldmethod=syntax "设定折叠方式(语法高亮)
 "set foldmethod=diff "设定折叠方式(手工)
 set foldmethod=marker "设定折叠方式(对文中的标志折叠)
+"}}}
+
+"{{{ 颜色方案
+
+"两种风格：'dark','light'
+"let g:lucius_style='dark'
+"三种文本亮度：'low','normal','high'
+"let g:lucius_contrast='low'
+"两种背景对比度：'normal','high'
+"let g:lucius_contrast_bg='normal'
+"colorscheme lucius "配色风格
+
+set background=dark
+colorscheme gruvbox "配色风格
+
+"hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
+"hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
+"hi CursorLine	guibg=#293d29
+
+"set background=dark
+"colorscheme yowish "配色风格
+
+"
+"}}}
+
+"{{{ 其他
+
+if(has('win32'))
+	"windows下用directX渲染文字
+	"set renderoptions=type:directx,renmode:5,taamode:1
+	set renderoptions=type:directx,
+		\gamma:1.5,contrast:0.5,geom:1,
+		\renmode:5,taamode:1,level:0.5
+endif
+
+set linespace=2 "设定行高，GUI界面中生效
+
+"设置彩色列
+"set colorcolumn=51,101,151
+"highlight colorcolumn guibg=#293d29
+"set cc=101
+
+"设定GUI选项
+"set guioptions-=m "m:菜单 T:工具栏 r:滚动条
+"set guioptions-=T
+set guioptions-=r
+
+set cursorline "设置当前行高亮
+"set cursorcolumn "设置当前列高亮
+
+" 进入插入模式时改变状态栏颜色（仅限于Vim 7）
+set laststatus=2 "总是显示状态栏
+"au InsertEnter * hi StatusLine guibg=#ffa200 guifg=#000000 gui=none
+"au InsertLeave * hi StatusLine guibg=#478536 guifg=#ffffff gui=none
+
+set list	"显示制表符
+"制表符显示样式
+set listchars=tab:\|\ ,trail:°
+"set listchars=tab:\|\ ,trail:-
+
+set tabstop=4 "设定Tab键缩进的空格数
+set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
+
+"autocmd BufEnter * lcd %:p:h "自动设置当前路径为当前激活的缓冲区文件路径
+
+"光标离窗口上下边界5行时自动滚动
+"set scrolloff=5
+
+"}}}
+
+"{{{ 快捷键设置
+"==================================================================================================================================
+"下面为快捷键设置
+"==================================================================================================================================
+	"标签
+	nmap <F2> :tabnew<cr>
+	nmap <C-j> :tabp<cr>
+	nmap <C-k> :tabn<cr>
+
+"	nmap <F5> :new<cr>
+"	nmap <F6> :vnew<cr>
+"	nmap <F7> :bnext!<cr>
+"	nmap <F8> :bprevious!<cr>
+
+	"缓冲区窗口
+	nmap <leader>wl <C-w>l
+	nmap <leader>wk <C-w>k
+	nmap <leader>wh <C-w>h
+	nmap <leader>wj <C-w>j
+
+	"设置文件类型
+	nmap <leader>ht :setf html<cr>
+	nmap <leader>css :setf css<cr>
+	nmap <leader>js :setf javascript<cr>
+	nmap <leader>py :setf python<cr>
+
+	"位置跳转
+	map <leader>a ^
+	map <leader>; $
+	map <leader>d V%
+
+	map <F12> :sp<cr>:edit $MYVIMRC<cr>:on!<cr>
+	"nmap J Jx
+	nmap <leader>color :ColorSchemeExplorer<cr> "选择颜色方案
+	map <silent> <leader>s :w<cr>
+	vmap <leader>y "*y
+	nmap <leader>p "*p
+	nmap <leader>P "*P
+	imap <leader>jj <Esc>
+
+"}}}
+
 "}}}
 
 "===========================================================
@@ -475,117 +590,6 @@ let g:airline_theme='alduin'
 
 "}}}
 
-"{{{ 颜色方案
-
-"两种风格：'dark','light'
-"let g:lucius_style='dark'
-"三种文本亮度：'low','normal','high'
-"let g:lucius_contrast='low'
-"两种背景对比度：'normal','high'
-"let g:lucius_contrast_bg='normal'
-"colorscheme lucius "配色风格
-
-"set background=light
-colorscheme spacegray "配色风格
-
-"hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
-"hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
-"hi CursorLine	guibg=#293d29
-
-"set background=dark
-"colorscheme yowish "配色风格
-
-"
-"}}}
-
-"{{{ 其他
-
-if(has('win32'))
-	"windows下用directX渲染文字
-	"set renderoptions=type:directx,renmode:5,taamode:1
-	set renderoptions=type:directx,
-		\gamma:1.5,contrast:0.5,geom:1,
-		\renmode:5,taamode:1,level:0.5
-endif
-
-set linespace=2 "设定行高，GUI界面中生效
-
-"设置彩色列
-"set colorcolumn=51,101,151
-"highlight colorcolumn guibg=#293d29
-"set cc=101
-
-"设定GUI选项
-"set guioptions-=m "m:菜单 T:工具栏 r:滚动条
-"set guioptions-=T
-set guioptions-=r
-
-set cursorline "设置当前行高亮
-"set cursorcolumn "设置当前列高亮
-
-" 进入插入模式时改变状态栏颜色（仅限于Vim 7）
-set laststatus=2 "总是显示状态栏
-"au InsertEnter * hi StatusLine guibg=#ffa200 guifg=#000000 gui=none
-"au InsertLeave * hi StatusLine guibg=#478536 guifg=#ffffff gui=none
-
-set list	"显示制表符
-"制表符显示样式
-set listchars=tab:\|\ ,trail:°
-"set listchars=tab:\|\ ,trail:-
-
-set tabstop=4 "设定Tab键缩进的空格数
-set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
-
-"autocmd BufEnter * lcd %:p:h "自动设置当前路径为当前激活的缓冲区文件路径
-
-"光标离窗口上下边界5行时自动滚动
-"set scrolloff=5
-
-"}}}
-
-"{{{ 快捷键设置
-"==================================================================================================================================
-"下面为快捷键设置
-"==================================================================================================================================
-	"标签
-	nmap <F2> :tabnew<cr>
-	nmap <C-j> :tabp<cr>
-	nmap <C-k> :tabn<cr>
-
-"	nmap <F5> :new<cr>
-"	nmap <F6> :vnew<cr>
-"	nmap <F7> :bnext!<cr>
-"	nmap <F8> :bprevious!<cr>
-
-	"缓冲区窗口
-	nmap <leader>wl <C-w>l
-	nmap <leader>wk <C-w>k
-	nmap <leader>wh <C-w>h
-	nmap <leader>wj <C-w>j
-
-	"设置文件类型
-	nmap <leader>ht :setf html<cr>
-	nmap <leader>css :setf css<cr>
-	nmap <leader>js :setf javascript<cr>
-	nmap <leader>py :setf python<cr>
-
-	"位置跳转
-	map <leader>a ^
-	map <leader>; $
-	map <leader>d V%
-
-	map <F12> :sp<cr>:edit $MYVIMRC<cr>:on!<cr>
-	"nmap J Jx
-	nmap <leader>color :ColorSchemeExplorer<cr> "选择颜色方案
-	map <silent> <leader>s :w<cr>
-	vmap <leader>y "*y
-	nmap <leader>p "*p
-	nmap <leader>P "*P
-	imap <leader>jj <Esc>
-
-"}}}
-"}}}
-
 "===========================================================
 "=                           GUI                           =
 "===========================================================
@@ -627,7 +631,7 @@ endif
 "{{{
 if(has('gui_running')==0)
 
-set background=dark
-colorscheme yowish "配色风格
+	"set background=dark
+	"colorscheme yowish "配色风格
 
 endif
