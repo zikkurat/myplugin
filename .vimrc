@@ -432,7 +432,11 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 "===========================================================
 "{{{
 	filetype plugin on
-	let g:pydiction_location = '/Users/ziggurat/.vim/bundle/Vundle.vim/pydiction/complete-dict'
+	if(has('win32'))
+		let g:pydiction_location = 'd:/Vim/vimfiles/bundle/Vundle.vim/pydiction/complete-dict'
+	else
+		let g:pydiction_location = '/Users/ziggurat/.vim/bundle/Vundle.vim/pydiction/complete-dict'
+	endif
 	let g:pydiction_menu_height = 10
 "}}}
 
@@ -518,7 +522,7 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'raw'
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(exe|so|dll|gif|jpg|png|avi|rm|rmvb|mkv|db)$',
