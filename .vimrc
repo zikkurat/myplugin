@@ -246,8 +246,12 @@ set nobackup "备份文档，不备分
 set nowritebackup "在写入档案前先备份一份，不备份
 
 "临时文件存放目录，swap文件
-if isdirectory('z:/temp')
-	set directory=z:\temp\
+if(has('win32'))
+	if isdirectory('z:/temp')
+		set directory=z:\temp\
+	elseif isdirectory('c:/temp')
+		set directory=c:\temp\
+	endif
 else
 	set directory=~/tmp/
 endif
