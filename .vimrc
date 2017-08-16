@@ -295,7 +295,7 @@ set foldmethod=marker "设定折叠方式(对文中的标志折叠)
 "colorscheme lucius "配色风格
 
 set background=dark
-colorscheme gruvbox "配色风格
+colorscheme solarized "配色风格
 
 "hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
 "hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
@@ -388,10 +388,10 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 	map <F12> :sp<cr>:edit $MYVIMRC<cr>:on!<cr>
 	"nmap J Jx
 	nmap <leader>color :ColorSchemeExplorer<cr> "选择颜色方案
-	map <silent> <leader>s :w<cr>
-	vmap <leader>y "*y
-	nmap <leader>p "*p
-	nmap <leader>P "*P
+
+	map <leader>y "*y
+	map <leader>p "*p
+
 	imap <leader>jj <Esc>
 
 "}}}
@@ -529,7 +529,7 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 let g:ctrlp_working_path_mode = 'raw'
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|so|dll|gif|jpg|png|avi|rm|rmvb|mkv|db)$',
+	\ 'file': '\v\.(psd|exe|so|dll|gif|jpg|png|avi|rm|rmvb|mkv|db)$',
 	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 	\ }
 "}}}
