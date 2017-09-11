@@ -601,16 +601,20 @@ let g:airline_theme='alduin'
 "=                           GUI                           =
 "===========================================================
 "{{{ GUI设置
-if(has('gui_running'))
 
-	if(has('win32'))
-		set guifont=Source_Code_Pro_for_Powerline:h12
-		"set guifont=Noto_Mono_for_Powerline:h12
-		set guifontwide=Yahei_Mono:h12
-	else
-		set guifont=mononoki:h16
-		set guifontwide=Yahei_Mono:h16
-	endif
+set guifont=Source_Code_Pro_for_Powerline:h16
+set guifontwide=Yahei_Mono:h16
+
+"if(has('gui_running'))
+"
+"	if(has('win32'))
+"		set guifont=Source_Code_Pro_for_Powerline:h12
+"		"set guifont=Noto_Mono_for_Powerline:h12
+"		set guifontwide=Yahei_Mono:h12
+"	else
+"		set guifont=mononoki:h16
+"		set guifontwide=Yahei_Mono:h16
+"	endif
 	
 
 	"字体{{{
