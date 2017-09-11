@@ -392,7 +392,7 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 	map <leader>y "*y
 	map <leader>p "*p
 
-	imap <leader>jj <Esc>
+	imap jj <Esc>
 
 "}}}
 
