@@ -130,9 +130,20 @@
 "此设置必须放在靠前位置
 "neovim不再支持此设置
 set nocompatible
+"不兼容vi模式，但一些现代编辑器行为还是要保留
+"set backspace=indent,eol,start
+"下面值=2，相当于上面的设置，
+"退格键可删除缩进，可合并行，可删除插入之前的字符
+set backspace=2
 
 "设置一些变量
 if(has("win32"))
+	"试验，修改$VIM这个值是为了第三方64位编译版
+	"设置$VIM以使得vimfiles目录可以被该版本找到
+	"结果一些插件依赖python，windows上没安装64位python
+	"以上备忘
+	let $VIM="d:/vim"
+
 	let $VIMFILES=$VIM."/vimfiles"
 else
 	let $VIMFILES=$HOME."/.vim"
