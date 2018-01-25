@@ -608,6 +608,26 @@ let g:airline_theme='alduin'
 
 "}}}
 
+
+"===========================================================
+"=                      启动终端                           =
+"===========================================================
+"{{{
+
+function! OpenTerminal()
+	if has('nvim')
+		topleft split
+		:terminal
+	else
+		:call term_start('bash', {'term_name': 'VIM Terminal', 'term_finish': 'close'})
+	endif
+endfunction
+nmap <leader>te :call OpenTerminal()<cr>
+tnoremap <Esc> <C-\><C-n>
+tnoremap <leader>e exit<cr>
+
+"}}}
+
 "===========================================================
 "=                           GUI                           =
 "===========================================================
