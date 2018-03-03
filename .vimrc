@@ -142,7 +142,7 @@ if(has("win32"))
 	"设置$VIM以使得vimfiles目录可以被该版本找到
 	"结果一些插件依赖python，windows上没安装64位python
 	"以上备忘
-	let $VIM="d:/vim"
+	"let $VIM="d:/vim"
 
 	let $VIMFILES=$VIM."/vimfiles"
 else
