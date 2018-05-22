@@ -144,7 +144,7 @@ if(has("win32"))
 	"以上备忘
 	"let $VIM="d:/vim"
 
-	let $VIMFILES=$VIM."/vimfiles"
+	let $VIMFILES=$VIM."\\vimfiles"
 else
 	let $VIMFILES=$HOME."/.vim"
 endif
@@ -448,7 +448,7 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 "{{{
 	filetype plugin on
 	if(has('win32'))
-		let g:pydiction_location = 'd:/Vim/vimfiles/bundle/Vundle.vim/pydiction/complete-dict'
+		let g:pydiction_location = $VIMFILES.'/bundle/Vundle.vim/pydiction/complete-dict'
 	else
 		let g:pydiction_location = '/Users/ziggurat/.vim/bundle/Vundle.vim/pydiction/complete-dict'
 	endif
@@ -461,7 +461,7 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 "===========================================================
 "{{{
 
-"let g:UltiSnipsExpandTrigger = '<C-l>'
+let g:UltiSnipsExpandTrigger = '<C-l>'
 "let g:UltiSnipsListSnippets = '<C-Tab>'
 "let g:UltiSnipsJumpForwardTrigger = '<C-l>'
 

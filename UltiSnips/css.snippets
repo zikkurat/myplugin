@@ -79,28 +79,12 @@ snippet bl "border-left" i
 border-left:${1:1}px${2: dotted}${3: solid} @${4:black};$0
 endsnippet
 
-snippet bs "border-style: size style color (border)" i
+snippet bs "border-style: size style color (border)" b
 border-style:${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
 endsnippet
 
 snippet bw "border-width" i
 border-width:$1;$0
-endsnippet
-
-snippet btw "border-width" i
-border-top-width:${1:1}px;$0
-endsnippet
-
-snippet brw "border-width" i
-border-right-width:${1:1}px;$0
-endsnippet
-
-snippet bbw "border-width" i
-border-bottom-width:${1:1}px;$0
-endsnippet
-
-snippet blw "border-width" i
-border-left-width:${1:1}px;$0
 endsnippet
 
 snippet "\bc" "color:  color-hex (color)" r
@@ -119,14 +103,6 @@ snippet fl "float: left:right:none (float)" i
 float:${1:left};$0
 endsnippet
 
-snippet ffy "font-family: family (font)" i
-font-family:${1:verdana,Arial,tahoma};$0
-endsnippet
-
-snippet ffz "font-family: family (font)" i
-font-family:${1:,微软雅黑,宋体};$0
-endsnippet
-
 snippet fs "font-size: size (font)" i
 font-size:${1:14px};$0
 endsnippet
@@ -142,6 +118,10 @@ endsnippet
 #snippet fall "font: style variant weight size:line-height font -family (font)" i
 #font:${1:normal/italic/oblique} ${2:normal/small-caps} ${3:normal/bold} ${4:1em/1.5em} ${5:Arial}, ${6:sans-}serif;$0
 #endsnippet
+
+snippet ff "font-family" i
+font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC","WenQuanYi Micro Hei","sans-serif";
+endsnippet
 
 snippet ls "list-style" i
 list-style:${1:none};$0
@@ -207,16 +187,16 @@ snippet poss "position: type (position)" i
 position:${1:static};$0
 endsnippet
 
-#snippet scrollbar "scrollbar"
-#scrollbar-base-color:${1:#CCCCCC};${2:
-#scrollbar-arrow-color:${3:#000000};
-#scrollbar-track-color:${4:#999999};
-#scrollbar-3dlight-color:${5:#EEEEEE};
-#scrollbar-highlight-color:${6:#FFFFFF};
-#scrollbar-face-color:${7:#CCCCCC};
-#scrollbar-shadow-color:${9:#999999};
-#scrollbar-darkshadow-color:${8:#666666};}
-#endsnippet
+snippet scroll "scrollbar"
+scrollbar-base-color:${1:#CCCCCC};${2:
+scrollbar-arrow-color:${3:#000000};
+scrollbar-track-color:${4:#999999};
+scrollbar-3dlight-color:${5:#EEEEEE};
+scrollbar-highlight-color:${6:#FFFFFF};
+scrollbar-face-color:${7:#CCCCCC};
+scrollbar-shadow-color:${9:#999999};
+scrollbar-darkshadow-color:${8:#666666};}
+endsnippet
 
 snippet sel "selection"
 ::-moz-selection{
@@ -234,7 +214,7 @@ text-align:${1:center};$0
 endsnippet
 
 snippet "\bto" "text-overflow: clip:ellipsis (txt)" r
-text-align:${1:clip}${2:ellipsis};$0
+text-overflow:${1:clip}${2:ellipsis};$0
 endsnippet
 
 snippet tde "text-decoration" i
@@ -250,7 +230,7 @@ snippet ws "white-space:  normal:pre:nowrap (white)" i
 white-space:${1:nowrap};$0
 endsnippet
 
-snippet z "z-index: index (z)" i
+snippet zi "z-index: index (z)" i
 z-index:$1;$0
 endsnippet
 

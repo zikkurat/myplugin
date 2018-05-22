@@ -2,47 +2,47 @@
 #                    Most of these came from TextMate                     #
 ###########################################################################
 
-snippet 3ts "text-shadow: color-hex x y blur (text)"
+snippet ts "text-shadow" b
 text-shadow:${1:0} ${2:0} ${3:5px} @${4:black};$0
 endsnippet
 
-snippet 3tb "text-shadow: color-hex x y blur (text)"
+snippet tsmb "文字描边text-shadow" b
 text-shadow:1px 0 0 @black,-1px 0 0 @black,0 1px 0 @black,0 -1px @black;
 endsnippet
 
-snippet 3bs "box-shadow: color-hex x y blur (text)"
+snippet boxs "box-shadow" b
 box-shadow:${1:0} ${2:0} ${3:5px} @${4:black};$0
 endsnippet
 
-snippet 3bs "box-shadow: color-hex x y blur (text)"
+snippet boxsin "内阴影box-shadow" b
 box-shadow:${1:0} ${2:0} ${3:5px} @${4:black} inset;$0
 endsnippet
 
-snippet 3br "border-radius:5px;"
+snippet bra "border-radius:5px;" b
 border-radius:5px;
 endsnippet
 
-snippet dh "定义动画时间：transition:..........."
+snippet dh "定义动画时间：transition:..........." b
 transition:$1s;
 endsnippet
 
-snippet dh "缩放"
+snippet dh "缩放" b
 transform:scale(${1:1.5});$0
 endsnippet
 
-snippet dh "旋转"
+snippet dh "旋转" b
 transform:rotate(${1:360deg});$0
 endsnippet
 
-snippet dh "移动"
+snippet dh "移动" b
 transform:translate(${1:x},${2:y});$0
 endsnippet
 
-snippet dh "定义坐标"
+snippet dh "定义坐标" b
 transform-origin:${1:left 100%};$0
 endsnippet
 
-snippet dh "定义动画：animation:............"
+snippet dh "定义动画：animation:............" b
 animation:${1:name} ${2:1}s steps(1) 0s infinite;
 @keyframes $1{
 }
