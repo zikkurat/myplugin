@@ -539,9 +539,8 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 
 let g:ctrlp_working_path_mode = 'raw'
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(psd|exe|so|dll|gif|jpg|png|avi|rm|rmvb|mkv|db)$',
-	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+	\ 'dir':  '\v[\/]\.(git|hg|svn|)$|node_modules$|venv$|dest$|build$|^site$',
+	\ 'file': '\v\.(psd|exe|so|dll|gif|jpg|png|avi|rm|rmvb|mkv|db|mp3|wav)$',
 	\ }
 "}}}
 
