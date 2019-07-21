@@ -158,8 +158,13 @@ endif
 
 filetype off
 if(has("win32"))
-	set rtp+=$VIMFILES/bundle/vundle.vim
-	call vundle#begin('$VIMFILES/bundle/vundle.vim/')
+	if(has("nvim"))
+		set rtp+=c:/Users/ziggurat/AppData/Local/nvim/bundle/vundle.vim
+		call vundle#begin('c:/Users/ziggurat/AppData/Local/nvim/bundle/vundle.vim/')
+	else
+		set rtp+=$VIMFILES/bundle/vundle.vim
+		call vundle#begin('$VIMFILES/bundle/vundle.vim/')
+	endif
 else
 	set rtp+=~/.vim/bundle/vundle.vim
 	call vundle#begin('~/.vim/bundle/vundle.vim/')
@@ -194,6 +199,7 @@ Plugin 'jonathanfilip/vim-lucius'
 Plugin 'ajh17/Spacegray.vim'
 Plugin 'yuratomo/neon.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'iCyMind/NeoSolarized'	"修复了solarized在windows控制台下显示不正常
 Plugin 'morhetz/gruvbox'
 "Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/Wombat'
@@ -230,6 +236,7 @@ let mapleader=" " "设置VIM快捷符号
 "语言，编码相关{{{
 
 set enc=utf-8 "设置显示编码
+set tenc=utf-8 "终端设置显示编码
 set fenc=utf-8 "设置文件编码
 set fileformat=unix
 language messages zh_cn.utf-8 "解决console输出乱码，就是控制台乱码
@@ -295,32 +302,9 @@ set foldlevel=0 "设置折行深度，自动折行时设定
 set foldmethod=marker "设定折叠方式(对文中的标志折叠)
 "}}}
 
-"{{{ 颜色方案
-
-"两种风格：'dark','light'
-"let g:lucius_style='dark'
-"三种文本亮度：'low','normal','high'
-"let g:lucius_contrast='low'
-"两种背景对比度：'normal','high'
-"let g:lucius_contrast_bg='normal'
-"colorscheme lucius "配色风格
-
-set background=dark
-colorscheme solarized "配色风格
-
-"hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
-"hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
-"hi CursorLine	guibg=#293d29
-
-"set background=dark
-"colorscheme yowish "配色风格
-
-"
-"}}}
-
 "{{{ 其他
 
-if(has('win32'))
+if(has('win32') && !has("nvim"))
 	"windows下用directX渲染文字
 	"set renderoptions=type:directx,renmode:5,taamode:1
 	set renderoptions=type:directx,
@@ -332,8 +316,8 @@ set linespace=2 "设定行高，GUI界面中生效
 
 "设置彩色列
 "set colorcolumn=51,101,151
-"highlight colorcolumn guibg=#293d29
-"set cc=101
+highlight colorcolumn guibg=#293d29
+set cc=70
 
 "设定GUI选项
 "set guioptions-=m "m:菜单 T:工具栏 r:滚动条
@@ -341,7 +325,7 @@ set linespace=2 "设定行高，GUI界面中生效
 set guioptions-=r
 
 set cursorline "设置当前行高亮
-"set cursorcolumn "设置当前列高亮
+set cursorcolumn "设置当前列高亮
 
 " 进入插入模式时改变状态栏颜色（仅限于Vim 7）
 set laststatus=2 "总是显示状态栏
@@ -496,6 +480,11 @@ let g:UltiSnipsExpandTrigger = '<C-l>'
 	endif
 	nmap <leader>t :TagbarToggle<cr>
 	let g:tagbar_width = 30
+	let g:tagbar_type_javascript = {
+		\'ctagsbin':'jsctags'
+	\}
+	"需要额外安装jsctags模块
+	"npm install jsctags -g
 
 "}}}
 
@@ -607,7 +596,6 @@ let g:airline_theme='alduin'
 
 "}}}
 
-
 "===========================================================
 "=                      启动终端                           =
 "===========================================================
@@ -616,6 +604,8 @@ let g:airline_theme='alduin'
 function! OpenTerminal()
 	if has('nvim')
 		topleft split
+		:terminal
+	elseif has('win32')
 		:terminal
 	else
 		:call term_start('bash', {'term_name': 'VIM Terminal', 'term_finish': 'close'})
@@ -635,10 +625,36 @@ tnoremap <leader>e exit<cr>
 
 if(has('gui_running'))
 
+	"{{{ 颜色方案
+
+	"两种风格：'dark','light'
+	"let g:lucius_style='dark'
+	"三种文本亮度：'low','normal','high'
+	"let g:lucius_contrast='low'
+	"两种背景对比度：'normal','high'
+	"let g:lucius_contrast_bg='normal'
+	"colorscheme lucius "配色风格
+
+	set background=dark
+	"colorscheme solarized "配色风格
+	colorscheme NeoSolarized "配色风格
+	set termguicolors
+
+	"hi Pmenu		guifg=#DDDDDD	guibg=#447744	gui=none
+	"hi PmenuSel		guifg=#FFFFFF	guibg=#993333	gui=none
+	"hi CursorLine	guibg=#293d29
+
+	"set background=dark
+	"colorscheme yowish "配色风格
+
+	"
+	"}}}
+
 	if(has('win32'))
 		"set guifont=Noto_Mono_for_Powerline:h12
-		set guifont=Source_Code_Pro_for_Powerline:h12
-		set guifontwide=Yahei_Mono:h12
+		"set guifont=Source_Code_Pro_for_Powerline:h12
+		"set guifontwide=Yahei_Mono:h12
+		set guifont=Consolas-with-Yahei:h12
 	else
 		"set guifont=mononoki:h16
 		"set guifontwide=Yahei_Mono:h16
@@ -672,8 +688,8 @@ endif
 "===========================================================
 "{{{
 if(has('gui_running')==0)
-
-	"set background=dark
-	"colorscheme yowish "配色风格
-
+	"set guifont=Consolas-with-Yahei:h12
+	set background=dark
+	colorscheme NeoSolarized "配色风格
+	set termguicolors
 endif
