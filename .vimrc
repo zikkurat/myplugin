@@ -126,12 +126,50 @@
 "
 "}}}
 
+
+"===========================================================
+"=                    默认配置文件                         =
+"===========================================================
+"{{{
+source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
+
+set diffexpr=MyDiff()
+function MyDiff()
+	let opt = '-a --binary '
+	if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+	if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+	let arg1 = v:fname_in
+	if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+	let arg2 = v:fname_new
+	if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+	let arg3 = v:fname_out
+	if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+	let eq = ''
+	if $VIMRUNTIME =~ ' '
+		if &sh =~ '\<cmd'
+			let cmd = '""' . $VIMRUNTIME . '\diff"'
+			let eq = '"'
+		else
+			let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+		endif
+	else
+		let cmd = $VIMRUNTIME . '\diff'
+	endif
+	silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+"}}}
+
+
 "设置是否兼容vi模式
 "此设置必须放在靠前位置
 "neovim不再支持此设置
 set nocompatible
+
 "不兼容vi模式，但一些现代编辑器行为还是要保留
 "set backspace=indent,eol,start
+
 "下面值=2，相当于上面的设置，
 "退格键可删除缩进，可合并行，可删除插入之前的字符
 set backspace=2
@@ -173,26 +211,26 @@ endif
 "Plugins
 Plugin 'VundleVim/Vundle.vim'						"插件管理依赖
 
-Plugin 'majutsushi/tagbar'							"tarbar没什么好说的
 Plugin 'vim-scripts/matchit.zip'					"快速跳转到配对的符号或标签
 Plugin 'jlanzarotta/bufexplorer'					"缓冲区管理
-Plugin 'lilydjwg/colorizer'							"在文件内查看代码表示的颜色
-Plugin 'kien/ctrlp.vim'								"文件查找
-Plugin 'lunaru/vim-less'							"less文件支持
 Plugin 'sjas/csExplorer'							"颜色方案预览
-Plugin 'easymotion/vim-easymotion'					"快速跳转
 Plugin 'vim-airline/vim-airline'					"状态条
+Plugin 'majutsushi/tagbar'							"tarbar没什么好说的
+Plugin 'lilydjwg/colorizer'							"在文件内查看代码表示的颜色
+Plugin 'lunaru/vim-less'							"less文件支持
 Plugin 'vim-airline/vim-airline-themes'				"状态条配色方案
-Plugin 'matze/vim-move'								"移动行
 Plugin 'sirver/ultisnips'							"自动完成
 Plugin 'honza/vim-snippets'							"自动完成方案大全
-Plugin 'scrooloose/nerdcommenter'					"注释插件
-Plugin 'zikkurat/myplugin'							"自写插件
 Plugin 'marijnh/tern_for_vim'						"JS补全引擎
 Plugin 'othree/javascript-libraries-syntax.vim'		"javascript系列框架语法高亮
 Plugin 'vim-scripts/Mark'							"高度指定关键字
-Plugin 'terryma/vim-multiple-cursors'				"多行文本编辑
 Plugin 'rkulla/pydiction'							"python自动完成
+Plugin 'kien/ctrlp.vim'								"文件查找
+Plugin 'easymotion/vim-easymotion'					"快速跳转
+Plugin 'matze/vim-move'								"移动行
+Plugin 'scrooloose/nerdcommenter'					"注释插件
+Plugin 'zikkurat/myplugin'							"自写插件
+Plugin 'terryma/vim-multiple-cursors'				"多行文本编辑
 
 "颜色方案
 Plugin 'jonathanfilip/vim-lucius'
@@ -233,6 +271,9 @@ filetype plugin on
 "{{{
 let mapleader=" " "设置VIM快捷符号
 
+"与windows共享剪贴板
+set clipboard=unnamed
+
 "语言，编码相关{{{
 
 set enc=utf-8 "设置显示编码
@@ -264,14 +305,18 @@ set nobackup "备份文档，不备分
 set nowritebackup "在写入档案前先备份一份，不备份
 
 "临时文件存放目录，swap文件
+"撤销文件也放在这里
 if(has('win32'))
 	if isdirectory('z:/temp')
 		set directory=z:\temp\
+		set undodir=z:\temp\
 	elseif isdirectory('c:/temp')
 		set directory=c:\temp\
+		set undodir=c:\temp\
 	endif
 else
 	set directory=~/tmp/
+	set undodir=~/tmp/
 endif
 
 set nowrap "设置文本不自动换行
@@ -384,8 +429,8 @@ set shiftwidth=4 "设定编辑器将多少空格视为一个缩进
 	"nmap J Jx
 	nmap <leader>color :ColorSchemeExplorer<cr> "选择颜色方案
 
-	map <leader>y "*y
-	map <leader>p "*p
+	"map <leader>y "*y
+	"map <leader>p "*p
 
 	imap jj <Esc>
 
