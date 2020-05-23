@@ -8,7 +8,7 @@ function! FormatCss(arg)
 		return
 	endif
 
-python << EOM
+python3 << EOM
 import vim,re
 
 #取得VIM传递进来的参数

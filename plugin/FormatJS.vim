@@ -1,5 +1,5 @@
 function! FormatJS() range
-python << EOM
+python3 << EOM
 import vim,jsbeautifier
 
 #取得VIM传递进来的参数

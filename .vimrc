@@ -180,9 +180,8 @@ if(has("win32"))
 	"设置$VIM以使得vimfiles目录可以被该版本找到
 	"结果一些插件依赖python，windows上没安装64位python
 	"以上备忘
-	"let $VIM="d:/vim"
-
-	let $VIMFILES=$VIM."\\vimfiles"
+	let $VIM='c:\soft/Vim'
+	let $VIMFILES=$VIM."/vimfiles"
 else
 	let $VIMFILES=$HOME."/.vim"
 endif
@@ -216,7 +215,7 @@ Plugin 'jlanzarotta/bufexplorer'					"缓冲区管理
 Plugin 'sjas/csExplorer'							"颜色方案预览
 Plugin 'vim-airline/vim-airline'					"状态条
 Plugin 'majutsushi/tagbar'							"tarbar没什么好说的
-Plugin 'lilydjwg/colorizer'							"在文件内查看代码表示的颜色
+"Plugin 'lilydjwg/colorizer'							"在文件内查看代码表示的颜色
 Plugin 'lunaru/vim-less'							"less文件支持
 Plugin 'vim-airline/vim-airline-themes'				"状态条配色方案
 Plugin 'sirver/ultisnips'							"自动完成
@@ -699,12 +698,13 @@ if(has('gui_running'))
 		"set guifont=Noto_Mono_for_Powerline:h12
 		"set guifont=Source_Code_Pro_for_Powerline:h12
 		"set guifontwide=Yahei_Mono:h12
-		set guifont=Consolas-with-Yahei:h12
+		"set guifont=YaHei_Consolas_Hybrid:h12
+		set guifont=Cascadia_Code:h12
 	else
 		"set guifont=mononoki:h16
 		"set guifontwide=Yahei_Mono:h16
 		set guifont=Source_Code_Pro_for_Powerline:h16
-		set guifontwide=Yahei_Mono:h16
+		"set guifontwide=Yahei_Mono:h16
 	endif
 	
 
